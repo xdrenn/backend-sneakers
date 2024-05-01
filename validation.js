@@ -14,3 +14,9 @@ export const registerValidation = [
   }),
   body("fullName", "Please, enter name").isLength({ min: 3 }),
 ];
+
+export const sneakersCreateValidation = [
+  body("name", "Please, enter name").isString(),
+  body("price", "Please, enter price"),
+  body("imageUrl", "Неверная ссылка на изображение").optional().isString(),
+];

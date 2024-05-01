@@ -1,6 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
-import { registerValidation, loginValidation } from "./validation.js";
+import {
+  registerValidation,
+  loginValidation,
+  sneakersCreateValidation,
+} from "./validation.js";
 
 import checkAuth from "./utils/checkAuth.js";
 import * as handleValidationErrors from "./utils/handleValidationErrors.js";
@@ -38,11 +42,17 @@ app.post("/auth/register", function (req, res) {
 
 //sneakers routes
 app.post("/sneakers/create", function (req, res) {
-  checkAuth, sneakersController.create(req, res);
+  checkAuth,
+    sneakersCreateValidation,
+    handleValidationErrors,
+    sneakersController.create(req, res);
 });
 app.get("/sneakers", sneakersController.getAll);
 app.patch("/sneakers/:id", function (req, res) {
-  checkAuth, sneakersController.update(req, res);
+  checkAuth,
+    sneakersCreateValidation,
+    handleValidationErrors,
+    sneakersController.update(req, res);
 });
 app.delete("/sneakers/:id", function (req, res) {
   checkAuth, sneakersController.remove(req, res);
