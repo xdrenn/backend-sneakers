@@ -8,7 +8,7 @@ const SneakersSchema = new mongoose.Schema(
     },
 
     price: {
-      type: Int32Array,
+      type: Number,
       required: true,
     },
 

@@ -2,9 +2,11 @@ import express from "express";
 import mongoose from "mongoose";
 import { registerValidation, loginValidation } from "./validation.js";
 
+import checkAuth from "./utils/checkAuth.js";
 import * as handleValidationErrors from "./utils/handleValidationErrors.js";
 
 import * as userController from "./controllers/UserController.js";
+import * as sneakersController from "./controllers/SneakersController.js";
 
 mongoose
   .connect(
@@ -25,6 +27,7 @@ app.get("/", (req, res) => {
   res.send(" hello world");
 });
 
+//user routes
 app.post("/auth/login", function (req, res) {
   loginValidation, handleValidationErrors;
   userController.login(req, res);
