@@ -11,6 +11,7 @@ import * as handleValidationErrors from "./utils/handleValidationErrors.js";
 
 import * as userController from "./controllers/UserController.js";
 import * as sneakersController from "./controllers/SneakersController.js";
+import * as favoritesController from "./controllers/FavoritesController.js";
 
 mongoose
   .connect(
@@ -56,6 +57,18 @@ app.patch("/sneakers/:id", function (req, res) {
 });
 app.delete("/sneakers/:id", function (req, res) {
   checkAuth, sneakersController.remove(req, res);
+});
+
+//favorites routes
+app.post("/favorites/add", function (req, res) {
+  checkAuth, favoritesController.create(req, res);
+});
+app.get("/favorites", favoritesController.getAll);
+app.patch("/favorites/:id", function (req, res) {
+  checkAuth, favoritesController.update(req, res);
+});
+app.delete("/favorites/:id", function (req, res) {
+  checkAuth, favoritesController.remove(req, res);
 });
 
 app.listen(4444, (err) => {
