@@ -35,7 +35,7 @@ export const update = async (req, res) => {
   try {
     const sneakersId = req.params.id;
 
-    await PostModel.updateOne(
+    await SneakersModel.updateOne(
       {
         _id: sneakersId,
       },
@@ -61,26 +61,13 @@ export const remove = async (req, res) => {
   try {
     const sneakersId = req.params.id;
 
-    SneakersModel.findOneAndDelete(
+    await SneakersModel.findOneAndDelete(
       {
-        id: sneakersId,
+        _id: sneakersId,
       },
-      (err, doc) => {
-        if (err) {
-          console.log(err);
-          res.status(500).json({ message: "Failed to delete sneakers" });
-        }
-
-        if (!doc) {
-          res.status(404).json({
-            message: "Sneakers not found",
-          });
-        }
-
-        res.json({
-          success: true,
-        });
-      }
+      res.json({
+        success: true,
+      })
     );
   } catch (err) {
     console.log(err);

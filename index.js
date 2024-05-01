@@ -36,6 +36,18 @@ app.post("/auth/register", function (req, res) {
   registerValidation, handleValidationErrors, userController.register(req, res);
 });
 
+//sneakers routes
+app.post("/sneakers/create", function (req, res) {
+  checkAuth, sneakersController.create(req, res);
+});
+app.get("/sneakers", sneakersController.getAll);
+app.patch("/sneakers/:id", function (req, res) {
+  checkAuth, sneakersController.update(req, res);
+});
+app.delete("/sneakers/:id", function (req, res) {
+  checkAuth, sneakersController.remove(req, res);
+});
+
 app.listen(4444, (err) => {
   if (err) {
     return console.log(err);
