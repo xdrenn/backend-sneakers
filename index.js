@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import {
   registerValidation,
   loginValidation,
@@ -13,7 +14,6 @@ import * as userController from "./controllers/UserController.js";
 import * as sneakersController from "./controllers/SneakersController.js";
 import * as favoritesController from "./controllers/FavoritesController.js";
 import * as cartController from "./controllers/CartController.js";
-import cart from "./models/cart.js";
 
 mongoose
   .connect(
@@ -28,11 +28,8 @@ mongoose
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.send(" hello world");
-});
 
 //user routes
 app.post("/auth/login", function (req, res) {
