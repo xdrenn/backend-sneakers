@@ -21,7 +21,12 @@ export const create = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
-    const sneakers = await SneakersModel.find({}).sort(req.query.sort).exec();
+    const query = req.query.query;
+    const sneakers = await SneakersModel.find({
+      name: { $regex: query, $options: "i" },
+    })
+      .sort(req.query.sort)
+      .exec();
     res.json(sneakers);
   } catch (err) {
     console.log(err);
