@@ -31,3 +31,23 @@ export const getAll = async (req, res) => {
     });
   }
 };
+
+export const remove = async (req, res) => {
+  try {
+    const itemId = req.params.id;
+
+    await CartModel.findOneAndDelete(
+      {
+        _id: itemId,
+      },
+      res.json({
+        success: true,
+      })
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Failed to delete item",
+    });
+  }
+};
