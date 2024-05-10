@@ -21,23 +21,27 @@ export const create = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
-    const sneakers = await SneakersModel.find({}).sort(req.query.sort).exec();
-    res.json(sneakers);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({
-      message: "Failed to receive data",
-    });
-  }
-};
+    const { sort, query } = req.query;
 
-export const getByName = async (req, res) => {
-  try {
-    const query = req.query.query;
-    const sneakers = await SneakersModel.find({
-      name: { $regex: query, $options: "i" },
-    }).exec();
-    res.json(sneakers);
+    if (sort && query) {
+      const sneakers = await SneakersModel.find({
+        name: { $regex: query, $options: "i" },
+      })
+        .sort(sort)
+        .exec();
+      res.json(sneakers);
+    } else if (sort) {
+      const sneakers = await SneakersModel.find({}).sort(sort).exec();
+      res.json(sneakers);
+    } else if (query) {
+      const sneakers = await SneakersModel.find({
+        name: { $regex: query, $options: "i" },
+      }).exec();
+      res.json(sneakers);
+    } else {
+      const sneakers = await SneakersModel.find({}).exec();
+      res.json(sneakers);
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json({

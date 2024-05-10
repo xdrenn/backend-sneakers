@@ -48,7 +48,6 @@ app.post("/sneakers/create", function (req, res) {
     sneakersController.create(req, res);
 });
 app.get("/sneakers", sneakersController.getAll);
-app.get("/sneakers/name", sneakersController.getByName);
 app.patch("/sneakers/:id", function (req, res) {
   checkAuth,
     sneakersCreateValidation,
