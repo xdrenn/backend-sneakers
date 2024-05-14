@@ -16,6 +16,16 @@ const SneakersSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+
+    isAdded: {
+      type: Boolean,
+      default: false,
+    },
+
+    isFavorite: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
