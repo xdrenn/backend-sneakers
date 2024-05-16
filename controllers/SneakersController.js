@@ -6,8 +6,6 @@ export const create = async (req, res) => {
       name: req.body.name,
       price: req.body.price,
       imageUrl: req.body.imageUrl,
-      isAdded: req.body.isAdded,
-      isFavorite: req.body.isFavorite,
     });
 
     const sneakers = await doc.save();
@@ -64,8 +62,6 @@ export const update = async (req, res) => {
         name: req.body.name,
         price: req.body.price,
         imageUrl: req.body.imageUrl,
-        isAdded: req.body.isAdded,
-        isFavorite: req.body.isFavorite,
       }
     );
 
