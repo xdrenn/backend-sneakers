@@ -60,23 +60,23 @@ app.delete("/sneakers/:id", function (req, res) {
 
 //favorites routes
 app.post("/favorites/add", function (req, res) {
-  checkAuth, favoritesController.create(req, res);
+  favoritesController.create(req, res);
 });
 app.get("/favorites", favoritesController.getAll);
 app.patch("/favorites/:id", function (req, res) {
   checkAuth, favoritesController.update(req, res);
 });
 app.delete("/favorites/:id", function (req, res) {
-  checkAuth, favoritesController.remove(req, res);
+  favoritesController.remove(req, res);
 });
 
 //cart routes
 app.post("/cart/add", function (req, res) {
-  checkAuth, cartController.add(req, res);
+  cartController.add(req, res);
 });
 app.post("/cart", checkAuth, cartController.getAll);
 app.post("/cart/:id", function (req, res) {
-  checkAuth, cartController.remove(req, res);
+  cartController.remove(req, res);
 });
 
 app.listen(4444, (err) => {
