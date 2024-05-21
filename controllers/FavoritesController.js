@@ -6,6 +6,16 @@ export const create = async (req, res) => {
       parentId: req.body.parentId,
     });
 
+    const existingFavorites = await FavoritesModel.findOne({
+      parentId: req.body.parentId,
+    });
+    if (existingFavorites) {
+      res.status(409).json({
+        message: "Favorites with the same parent ID already exists",
+      });
+      return;
+    }
+
     const favorites = await doc.save();
 
     res.json(favorites);
