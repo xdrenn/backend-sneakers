@@ -7,9 +7,12 @@ const CartSchema = new mongoose.Schema({
       name: String,
       price: Number,
       imageUrl: String,
-      isAdded: Boolean,
     },
   ],
+  totalPrice: {
+    type: Number,
+    required: true,
+  },
 });
 
 export default mongoose.model("Cart", CartSchema);
