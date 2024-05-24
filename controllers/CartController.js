@@ -3,10 +3,18 @@ import CartModel from "../models/cart.js";
 export const add = async (req, res) => {
   try {
     const model = CartModel({
-      name: req.body.name,
-      price: req.body.price,
-      imageUrl: req.body.imageUrl,
-      isAdded: req.body.isAdded,
+      items: [
+        {
+          name: req.body.name,
+          price: req.body.price,
+          imageUrl: req.body.imageUrl,
+          isAdded: req.body.isAdded,
+          isFavorite: req.body.isFavorite,
+          id: req.body._id,
+          favoriteId: req.body.favoriteId,
+        },
+      ],
+      totalPrice: req.body.totalPrice,
     });
 
     const cart = await model.save();
