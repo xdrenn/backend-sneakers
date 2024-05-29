@@ -1,4 +1,5 @@
 import FavoritesModel from "../models/favorites.js";
+import SneakersModel from "../models/sneakers.js";
 
 export const create = async (req, res) => {
   try {
@@ -29,7 +30,7 @@ export const create = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
-    const favorites = await FavoritesModel.find();
+    const favorites = await FavoritesModel.find().populate("parentId");
     res.json(favorites);
   } catch (err) {
     console.log(err);
