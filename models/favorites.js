@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 const FavoritesSchema = new mongoose.Schema(
   {
     parentId: {
-      type: String,
-      required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Sneakers",
     },
   },
   {
